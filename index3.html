@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I’m Sorry 💔</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Quicksand', sans-serif;
+      height: 100%;
+      background: linear-gradient(120deg, #ffdde1, #ee9ca7);
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 1s ease-in-out;
+      position: relative;
+      padding: 20px;
+    }
+
+    .slider {
+      width: 100%;
+      max-width: 800px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .slide {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    .slide-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .slide-content img {
+      width: 45%;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .text {
+      flex: 1;
+      text-align: center;
+    }
+
+    h2 {
+      color: #ff6f61;
+      font-size: 26px;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    p {
+      font-size: 18px;
+      color: #333;
+      font-family: 'Satisfy', cursive;
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      font-size: 16px;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+      flex: 1;
+    }
+
+    .btn:hover {
+      background-color: #ff3b3f;
+    }
+
+    .btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .centered-slide {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .love {
+      position: absolute;
+      font-size: 40px;
+      opacity: 0;
+      animation: popLove 1s forwards;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    @keyframes popLove {
+      0% {opacity: 0; transform: scale(0.5); top: 60%; left: 50%;}
+      50% {opacity: 1; transform: scale(1.2);}
+      100% {opacity: 0; top: 30%; transform: scale(0.7);}
+    }
+
+    .toast {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff6f61;
+      color: white;
+      padding: 14px 25px;
+      border-radius: 25px;
+      font-size: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s;
+      z-index: 10;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      resize: none;
+    }
+
+    .heart {
+  position: fixed;
+  top: -20px;
+  color: red;
+  font-size: 12px;
+  animation: fallHeart 5s linear infinite;
+  z-index: 999;
+}
+
+@keyframes fallHeart {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+    @media (max-width: 600px) {
+      body {
+        align-items: flex-start;
+      }
+
+      .slider {
+        margin-top: 50px;
+        height: auto;
+      }
+
+      .slide-content {
+        flex-direction: column-reverse;
+      }
+
+      .slide-content img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="slider">
+  <div class="slide active">
+    <div class="centered-slide">
+      <h2>Yaad Hai Woh Waqt?❤️</h2>
+      <p>Jab Hum Bina Kisi Wajah Ke Hans Padte The... Vo Waqt Bohot Khoobsurat Tha 😊</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn" onclick="prevSlide()" disabled>Back</button>
+      <button class="btn" onclick="nextSlide()">Next</button>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-content">
+      <img src="img2.jpg" alt="Friend Image">
+      <div class="text">
+        <h2>Teri Dosti ❤️</h2>
+        <p>Teri Dosti Mere Liye Sab Kuch Hai, Main Kabhi Tujhe Hurt Nahi Karna Chahta Tha...</p>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn" onclick="prevSlide()">Back</button>
+      <button class="btn" onclick="nextSlide()">Next</button>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-content">
+      <img src="img1.jpg" alt="Friend Image">
+      <div class="text">
+        <h2>Mujhse Galti Hui 🥺</h2>
+        <p>Galti Ho Gayi Mujhse, Lekin Dil Se Maafi Maangta Hoon. Tujhse Door Rehna Nahi Chahta.</p>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn" onclick="prevSlide()">Back</button>
+      <button class="btn" onclick="nextSlide()">Next</button>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-content">
+      <img src="img3.jpg" alt="Friend Image">
+      <div class="text">
+        <h2>Tum Naraz Ho...</h2>
+        <p>Jab Tu Naraz Hoti Hai, Toh Sab Kuch Suna Suna Lagta Hai... 💔</p>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn" onclick="prevSlide()">Back</button>
+      <button class="btn" onclick="nextSlide()">Next</button>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-content">
+      <img src="img4.jpg" alt="Friend Image">
+      <div class="text">
+        <h2>I'm Really Sorry 🥺</h2>
+        <p>Tu Meri Best Friend Hai... Aur Mujhe Teri Hassi Aur Woh Bakbak Sab Yaad Aati Hai...</p>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn" onclick="prevSlide()">Back</button>
+      <button class="btn" onclick="showToast()">Forgive Me 💌</button>
+      <button class="btn" onclick="goToReply()">Reply ✍️</button>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="centered-slide">
+      <h2>Apna Message Likho ✍️</h2>
+      <textarea id="userReply" rows="5" placeholder="Yahaan likho jo tumhare dil mein hai..."></textarea>
+      <div class="btn-row">
+        <button class="btn" onclick="prevSlide()">Back</button>
+        <button class="btn" onclick="sendReply()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Thank You For Forgiving Me ❤️</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+
+  function updateSlide() {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (i === currentSlide) slide.classList.add('active');
+      const backBtn = slide.querySelectorAll('.btn')[0];
+      if (backBtn) backBtn.disabled = currentSlide === 0;
+    });
+  }
+
+  function nextSlide() {
+    if (currentSlide < slides.length - 1) {
+      currentSlide++;
+      updateSlide();
+      showLove();
+    }
+  }
+
+  function prevSlide() {
+    if (currentSlide > 0) {
+      currentSlide--;
+      updateSlide();
+      showLove();
+    }
+  }
+
+  function showLove() {
+    const heart = document.createElement("div");
+    heart.className = "love";
+    heart.innerText = "❤️";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 1000);
+  }
+
+  function showToast() {
+    const toast = document.getElementById("toast");
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 3000);
+    showLove();
+  }
+
+  function goToReply() {
+    currentSlide++;
+    updateSlide();
+    showLove();
+  }
+
+  function sendReply() {
+    const message = document.getElementById("userReply").value.trim();
+    if (message === "") {
+      alert("Please write a reply before sending.");
+      return;
+    }
+    const encodedMsg = encodeURIComponent(message);
+    const phoneNumber = "918440003711";
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+    window.open(whatsappURL, "_blank");
+  }
+
+  function createHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.innerText = '❤';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.fontSize = Math.random() * 6 + 8 + 'px'; // smaller size
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 5000);
+}
+
+setInterval(createHeart, 150); // more frequent for continuous rain
+
+</script>
+
+</body>
+</html>
